@@ -30,5 +30,10 @@ export const auth = betterAuth({
       expiresIn: 60 * 5, // 5 minutes
     }
   },
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://jotspace-pi.vercel.app",
+    "https://*.vercel.app"
+  ],
   plugins: [nextCookies()]
 });
