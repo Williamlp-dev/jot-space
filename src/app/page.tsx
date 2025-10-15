@@ -30,7 +30,7 @@ export default async function Page() {
           </Link>
         </Badge>
         <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl md:leading-[1.2] font-semibold tracking-tighter">
-          Notes.
+          Jot Space.
         </h1>
         <p className="mt-6 md:text-lg">
           Organize your thoughts, capture your ideas, and stay productive with our intuitive note-taking app. 
