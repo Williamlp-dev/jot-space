@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build --turbopack && npx drizzle-kit push",
     "start": "next start"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.8",
+    "@supabase/ssr": "^0.7.0",
     "@tiptap/pm": "^3.6.2",
     "@tiptap/react": "^3.6.2",
     "@tiptap/starter-kit": "^3.6.2",
