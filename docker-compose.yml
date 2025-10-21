@@ -1,15 +1,11 @@
+
 services:
-  notes-pg:
-    image: pgvector/pgvector:pg17
+  postgres:
+    image: postgres:17
+    container_name: notes-db
     environment:
       POSTGRES_USER: docker
       POSTGRES_PASSWORD: docker
       POSTGRES_DB: notes
     ports:
       - "5432:5432"
-    volumes:
-      - notes_data:/var/lib/postgresql/data
-    restart: unless-stopped
-
-volumes:
-  notes_data:
