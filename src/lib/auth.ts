@@ -6,11 +6,13 @@ import { nextCookies } from "better-auth/next-js";
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
-  }), 
+  }),
+    
   emailAndPassword: {
     enabled: true,
     autoSignIn: true,
   },
+  
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -21,7 +23,7 @@ export const auth = betterAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     },
   },
-
+  
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     cookieCache: {
@@ -30,10 +32,5 @@ export const auth = betterAuth({
       expiresIn: 60 * 5, // 5 minutes
     }
   },
-  trustedOrigins: [
-    "http://localhost:3000",
-    "https://jotspace-pi.vercel.app",
-    "https://*.vercel.app"
-  ],
   plugins: [nextCookies()]
 });
