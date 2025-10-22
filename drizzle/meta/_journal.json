@@ -8,6 +8,13 @@
       "when": 1760277371663,
       "tag": "0000_solid_wolfsbane",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1761096619763,
+      "tag": "0001_hot_sabra",
+      "breakpoints": true
     }
   ]
 }

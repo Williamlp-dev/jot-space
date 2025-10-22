@@ -56,7 +56,6 @@ export function EditorText({ note }: EditorTextProps) {
   const [autoSaveTimeout, setAutoSaveTimeout] = useState<NodeJS.Timeout | null>(null)
   const { updateNote } = useNotesStore()
 
-  // Memoizar extensões para evitar recriação desnecessária
   const extensions = useMemo(() => createExtensions(), [])
 
   const editor = useEditor({
@@ -87,7 +86,6 @@ export function EditorText({ note }: EditorTextProps) {
         setHasChanges(false)
         setSaveStatus('saved')
         
-        // Reset status after 2 seconds
         setTimeout(() => setSaveStatus('idle'), 2000)
       } catch (error) {
         console.error('Erro no auto-save:', error)
@@ -141,7 +139,6 @@ export function EditorText({ note }: EditorTextProps) {
     }
   }, [editor, note])
 
-  // Função para renderizar o status de salvamento
   const renderSaveStatus = () => {
     switch (saveStatus) {
       case 'saving':

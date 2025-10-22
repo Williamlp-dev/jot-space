@@ -24,23 +24,19 @@ export function InlineTitleEdit({
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    // Se o título for "Sem título", deixa o campo vazio para edição
     setValue(title === "Sem título" ? "" : title)
-    // Focar no input quando o componente montar
     if (inputRef.current) {
       inputRef.current.focus()
       inputRef.current.select()
     }
   }, [title])
 
-  // Input controlado apenas pelo estado local
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
   }
 
   const handleSave = () => {
     const trimmedValue = value.trim()
-    // Se estiver vazio, salva como "Nova página"
     if (trimmedValue === "") {
       onSave("Sem título")
     } else if (trimmedValue !== title) {

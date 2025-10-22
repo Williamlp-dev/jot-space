@@ -66,7 +66,7 @@ function SortableNote({
       {...attributes}
       {...listeners}
       className={cn(
-        "group min-h-[32px] text-sm  px-3 w-full hover:bg-muted/50 rounded-md flex items-center text-foreground  active:cursor-grabbing font-medium",
+        "group min-h-[32px] text-sm px-3 w-full hover:bg-muted/50 rounded-md flex items-center text-foreground active:cursor-grabbing font-medium",
         isSelected && "bg-muted text-foreground font-semibold",
         isDragging && "opacity-50"
       )}
@@ -113,7 +113,6 @@ interface NoteListProps {
 export function NoteList({ selectedNoteId, onSelectNote, notes: propNotes }: NoteListProps = {}) {
   const { notes: storeNotes, isLoading, error, hasInitialLoad, selectedNoteId: storeSelectedNoteId, setSelectedNoteId, updateNote, reorderNotes } = useNotesStore()
   
-  // Usar notas da prop ou do store
   const notes = propNotes || storeNotes
   const currentSelectedNoteId = selectedNoteId !== undefined ? selectedNoteId : storeSelectedNoteId
   const handleSelectNote = onSelectNote || setSelectedNoteId

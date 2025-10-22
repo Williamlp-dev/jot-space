@@ -2,14 +2,24 @@
 
 import { db } from "@/db/index";
 import { notesTable } from "@/db/schema/notes";
-import { max } from "drizzle-orm";
+import { max, eq } from "drizzle-orm";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export async function createNote(data: { title?: string; description?: string }) {
   try {
-    // Busca o maior valor de order para adicionar nova nota no final
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+
+    if (!session?.user?.id) {
+      throw new Error("Usuário não autenticado");
+    }
+
     const maxOrderResult = await db
       .select({ maxOrder: max(notesTable.order) })
-      .from(notesTable);
+      .from(notesTable)
+      .where(eq(notesTable.userId, session.user.id));
     
     const nextOrder = maxOrderResult[0]?.maxOrder !== null 
       ? maxOrderResult[0].maxOrder + 100 
@@ -21,6 +31,7 @@ export async function createNote(data: { title?: string; description?: string })
         title: data.title || "Sem título",
         description: data.description ?? "",
         order: nextOrder,
+        userId: session.user.id,
       })
       .returning();
     
